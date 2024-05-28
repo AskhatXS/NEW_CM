@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+  <h2>Список лекций</h2>
+  <ul>
+    {% for lecture in lectures %}
+      <li>{{ lecture.title }}</li>
+      <li><a href="{{ lecture.lecture_video.url }}">{{ lecture.lecture_video.url }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+</body>
+</html>

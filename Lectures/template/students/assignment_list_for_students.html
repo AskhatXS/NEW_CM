@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Список заданий</h1>
+<ul>
+{% for assignment in assignments %}
+    <li>{{ assignment.title }} - {{ assignment.description }}</li>
+    <a href="{% url 'add_answer' assignment.id %}">Добавить ответ</a>
+{% endfor %}
+</ul>
+</body>
+</html>

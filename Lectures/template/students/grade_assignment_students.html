@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% block content %}
+  <h2>Оценка задания: {{ assignment.title }}</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="grade">Оценка:</label>
+    <input type="text" id="grade" name="grade">
+    <label for="comment">Комментарий:</label>
+    <textarea id="comment" name="comment"></textarea>
+    <button type="submit">Отправить</button>
+  </form>
+{% endblock %}
+
+
+</body>
+</html>
