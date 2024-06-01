@@ -48,32 +48,32 @@ def register(request):
     return render(request, 'accounts/register.html', {'form': form})
 
 
-@login_required(login_url='unauthenticated')
+#@login_required(login_url='unauthenticated')
 def course_list(request):
     courses = Course.objects.all()
     return render(request, 'common/course_list.html', {'courses': courses})
 
 
-@login_required(login_url='unauthenticated')
+#@login_required(login_url='unauthenticated')
 def course_detail(request, pk):
     course = Course.objects.get(id=pk)
     return render(request, 'view/course_detail.html', {'course': course})
 
 
-@login_required(login_url='unauthenticated')
+#@login_required(login_url='unauthenticated')
 def lecture_list(request, course_pk):
     course = Course.objects.get(id=course_pk)
     lectures = course.lectures.all()
     return render(request, 'common/lecture_list.html', {'lectures': lectures})
 
 
-@login_required(login_url='unauthenticated')
-def assignment_list(request, course_id):
-    course = Course.objects.get(id=course_id)
+#@login_required(login_url='unauthenticated')
+def assignment_list_for_students(request, course_id):
+    course = Course.objects.get(id=course_pk)
     assignments = Assignment.objects.filter(course=course)
     return render(request, 'view/assignment_list.html', {'assignments': assignments})
 
-#
+
 #@login_required(login_url='unauthenticated')
 def grade_assignment(request, assignment_pk):
     assignment = Assignment.objects.get(id=assignment_pk)
@@ -100,7 +100,7 @@ def add_assignment_to_course(request, course_id):
         form = AssignmentForm()
     return render(request, 'teachers/add_assignment.html', {'form': form, 'course': course})
 
-
+#  Просмотреть задания(ученик)
 @login_required
 def view_grades(request):
     student = request.user
