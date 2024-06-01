@@ -45,11 +45,6 @@ class Grade(models.Model):
 class Connect(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='course:', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='user:')
-    STATUS_CHOICES = [
-        ('teacher', 'Teacher'),
-        ('student', 'Student'),
-    ]
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, verbose_name='status:')
 
     def str(self):
         return f'{self.user.username} - {self.status}'
@@ -58,7 +53,7 @@ class Connect(models.Model):
 class Answer(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.TextField(verbose_name='answer')
     file = models.FileField(upload_to='answers/')
     created_at = models.DateTimeField(auto_now_add=True)
 
