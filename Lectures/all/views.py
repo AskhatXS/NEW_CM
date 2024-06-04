@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Course, Connect, Assignment, Grade
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
-from .forms import LoginForm, RegistrationForm, AssignmentForm, AnswerForm
+from .forms import LoginForm, UserCreation, AssignmentForm, AnswerForm
 
 
 @login_required(login_url='unauthenticated')
@@ -26,26 +26,31 @@ def user_login(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(username=cd['username'], password=cd['password'])
+            user = authenticate(username=cd['username'], password=cd['password1'])
             if user is not None:
                 login(request, user)
                 return redirect('main')
+            else:
+                form.add_error(None, 'Ошибка в имени или пароле!')
     else:
         form = LoginForm()
-    return render(request, "accounts/login.html", {'form': form})
+    return render(request, 'accounts/login.html', {'form': form})
 
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = UserCreation(request.POST)
         if form.is_valid():
             user = form.save()
-            status = form.cleaned_data.get('status')
-            Connect.objects.create(user=user, status=status)
             return redirect('login')
     else:
-        form = RegistrationForm()
+        form = UserCreation()
     return render(request, 'accounts/register.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 
 
 @login_required(login_url='unauthenticated')

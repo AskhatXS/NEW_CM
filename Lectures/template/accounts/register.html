@@ -76,43 +76,16 @@
 <body>
     <div class="container">
         <h1>Регистрация</h1>
-        {% if messages %}
-            <div id="message" class="message">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            </div>
-        {% endif %}
         <form method="post">
             {% csrf_token %}
-            <div class="form-group">
-                {{ form.username.label_tag }}
-                {{ form.username }}
-                {{ form.username.errors }}
-            </div>
-            <div class="form-group">
-                {{ form.password1.label_tag }}
-                {{ form.password1 }}
-                {{ form.password1.errors }}
-            </div>
-            <div class="form-group">
-                {{ form.password2.label_tag }}
-                {{ form.password2 }}
-                {{ form.password2.errors }}
-            </div>
-            <div class="form-group">
-                {{ form.email.label_tag }}
-                {{ form.email }}
-                {{ form.email.errors }}
-            </div>
-            <div class="form-group">
-                {{ form.status.label_tag }}
-                {{ form.status }}
-                {{ form.status.errors }}
-            </div>
-            <div class="form-group">
+            <p>{{ form.username }}</p>
+            <p>{{ form.first_name }}</p>
+            <p>{{ form.last_name }}</p>
+            <p>{{ form.password1 }}</p>
+            <p>{{ form.password2 }}</p>
+            <p>{{ form.status }}</p>
+<!--        {{ form.captcha }}-->
                 <button type="submit">Зарегистрироваться</button>
-            </div>
         </form>
         <a href="{% url 'login' %}">Уже есть аккаунт? Войти</a>
     </div>
