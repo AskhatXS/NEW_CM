@@ -103,13 +103,6 @@ class LectureForm(forms.ModelForm):
         fields = '__all__'
 
 
-class RegisterForm(UserCreationForm):
-    captcha = ReCaptchaField()
-
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2','captcha')
-
 
 class AnswerForm(forms.ModelForm):
     class Meta:
