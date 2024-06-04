@@ -5,6 +5,7 @@ from .views import unauthenticated
 urlpatterns = [
     path('main/', views.main, name='main'),
     path('unauthenticated/', unauthenticated, name='unauthenticated'),
+    path('about_us/', views.about_us, name='about us'),
     path('', views.layout, name='layout'),
     path('login/', views.user_login, name='login'),
     path('register/', views.register, name='register'),

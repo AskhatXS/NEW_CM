@@ -54,6 +54,11 @@ def logout_view(request):
 
 
 @login_required(login_url='unauthenticated')
+def about_us(request):
+    return render(request, template_name='common/about us.html')
+
+
+@login_required(login_url='unauthenticated')
 def course_list(request):
     courses = Course.objects.all()
     return render(request, 'common/course_list.html', {'courses': courses})
