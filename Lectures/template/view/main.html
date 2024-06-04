@@ -36,6 +36,7 @@
         }
     </style>
 </head>
+<body>
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -63,8 +64,29 @@
     <div class="container">
         <h1>Добро пожаловать,{{ username }}</h1>
         <p>Теперь вы можете использовать все функции системы онлайн-обучения.</p>
-        <p>Выберите интересующий вас раздел в навигационной панели сверху.</p>
+        <p>Выберите интересующий вас раздел в навигационной панели сверху или выберите интересующие вас курсы снизу!</p>
     </div>
+
+<div class="row">
+    <div class="col">
+        <div id="news-list" class="row">
+            {% for course in courses %}
+            <div class="col-md-4">
+                <div class="card bg-dark mb-5 mt-3 border-0 h-100 d-flex align-items-stretch text-light">
+                    <img src="{{ course.image }}" class="card-img-top" alt="{{ dish.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ course.title }}</h5>
+                        <p class="card-text">{{ course.description }}</p>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ course.start_date }}</h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ course.end_date }}</h6>
+                        <a href="{% url 'course_detail' course.id %}" class="btn btn-outline-primary">Подробнее</a>
+        </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

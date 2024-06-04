@@ -59,12 +59,6 @@ def about_us(request):
 
 
 @login_required(login_url='unauthenticated')
-def course_list(request):
-    courses = Course.objects.all()
-    return render(request, 'common/course_list.html', {'courses': courses})
-
-
-@login_required(login_url='unauthenticated')
 def course_detail(request, pk):
     course = Course.objects.get(id=pk)
     return render(request, 'view/course_detail.html', {'course': course})
