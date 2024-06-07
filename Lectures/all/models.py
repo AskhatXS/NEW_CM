@@ -17,7 +17,7 @@ class Course(models.Model):
     end_date = models.DateField("Дата окончания:")
     image = models.ImageField(upload_to='images/', verbose_name='Изображения:')
     teachers = models.ForeignKey(User, related_name='teachers', on_delete=models.CASCADE)
-    lectures = models.ManyToManyField(Lecture, 'Лекции:')
+    lectures = models.ManyToManyField(Lecture)
 
     def str(self):
         return self.title

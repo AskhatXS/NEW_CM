@@ -103,7 +103,6 @@ class LectureForm(forms.ModelForm):
         fields = '__all__'
 
 
-
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
