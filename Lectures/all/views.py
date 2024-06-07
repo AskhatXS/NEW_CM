@@ -125,4 +125,3 @@ def add_answer(request, assignment_id):
     else:
         form = AnswerForm()
     return render(request, 'add_answer.html', {'form': form})
-
